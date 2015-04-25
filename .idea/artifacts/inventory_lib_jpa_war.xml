@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="inventory-lib-jpa:war">
-    <output-path>$PROJECT_DIR$/inventory-lib-jpa/target</output-path>
-    <root id="archive" name="inventory-lib-jpa.war">
-      <element id="artifact" artifact-name="inventory-lib-jpa:war exploded" />
-    </root>
-  </artifact>
-</component>
