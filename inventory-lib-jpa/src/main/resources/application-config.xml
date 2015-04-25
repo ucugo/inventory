@@ -19,7 +19,7 @@
        <!--</bean>-->
        <context:annotation-config/>
 
-       <bean class="config.ApplicationConfig"/>
-
        <import resource="classpath:/common-config.xml"/>
+
+       <bean class="config.ApplicationConfig"/>
 </beans>
