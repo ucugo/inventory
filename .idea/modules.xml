@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/inventory.iml" filepath="$PROJECT_DIR$/inventory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inventory-lib-jpa/inventory-lib-jpa.iml" filepath="$PROJECT_DIR$/inventory-lib-jpa/inventory-lib-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inventory-lib/inventory-lib-mongo.iml" filepath="$PROJECT_DIR$/inventory-lib/inventory-lib-mongo.iml" />
+    </modules>
+  </component>
+</project>

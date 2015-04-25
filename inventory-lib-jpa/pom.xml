@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>inventory-parent</artifactId>
+        <groupId>inventory</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>inventory-lib-jpa</artifactId>
+    <packaging>jar</packaging>
+
+    <build>
+
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+                <configuration>
+                    <contextPath>"hello"</contextPath>
+                    <reload>manual</reload>
+                    <useTestClasspath>true</useTestClasspath>
+                    <jettyEnvXml>../jetty-env.xml</jettyEnvXml>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8084</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>meridian.config_home</name>
+                            <value>file:///${user.home}/meridian</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>commons-dbcp</groupId>
+                        <artifactId>commons-dbcp</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.13</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <systemProperties>
+                        <property>
+                            <name>net.sf.ehcache.disabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+            <!--Runs our integration tests separately. To use run 'mvn verify'. This will run all tests whose names end 'ITCase'-->
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build.helper.maven.plugin.version}</version>
+                <executions>
+                    <!-- States that the plugin's add-test-source goal is executed at generate-test-sources phase. -->
+                    <execution>
+                        <id>add-integration-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Configures the source directory of integration tests. -->
+                            <sources>
+                                <source>src/test-integration/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <tagBase>svn://donkey/tags/pollen8-releases</tagBase>
+                </configuration>
+            </plugin>
+            <!-- To allow us to run the app in Tomcat -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArgument>-proc:none</compilerArgument>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+
+    <dependencies>
+        <!-- Spring data libraries-->
+        <dependency><groupId>org.springframework.data</groupId><artifactId>spring-data-jpa</artifactId><version>${spring.data.version}</version><optional>false</optional></dependency>
+        <dependency><groupId>org.springframework.data</groupId><artifactId>spring-data-commons</artifactId><version>1.5.2.RELEASE</version></dependency>
+        <!-- Spring lib-->
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-web</artifactId><version>${spring.web}</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-webmvc</artifactId><version>${spring.web}</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-context</artifactId><version>${spring.version}</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-test</artifactId><version>${spring.version}</version><scope>test</scope>
+        </dependency><dependency><groupId>org.springframework</groupId><artifactId>spring-orm</artifactId><version>${spring.version}</version></dependency>
+        <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.7</version><scope>test</scope></dependency>
+        <dependency><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId><version>2.5</version><scope>provided</scope></dependency>
+        <dependency><groupId>commons-lang</groupId><artifactId>commons-lang</artifactId><version>2.4</version></dependency>
+        <!--<dependency><groupId>org.slf4j</groupId><artifactId>slf4j-log4j12</artifactId><version>${slf4j-version}</version></dependency>-->
+        <dependency><groupId>commons-httpclient</groupId><artifactId>commons-httpclient</artifactId><version>3.1</version></dependency>
+        <dependency><groupId>commons-codec</groupId><artifactId>commons-codec</artifactId><version>1.3</version></dependency>
+        <dependency><groupId>javax.servlet</groupId><artifactId>jstl</artifactId><version>1.2</version></dependency>
+        <!-- JSON and XML mappers Begin -->
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-oxm</artifactId><version>${spring.version}</version></dependency>
+        <dependency><groupId>org.codehaus.castor</groupId><artifactId>castor</artifactId><version>1.2</version></dependency>
+        <dependency><groupId>xerces</groupId><artifactId>xercesImpl</artifactId><version>2.8.1</version></dependency>
+        <dependency><groupId>org.codehaus.jackson</groupId><artifactId>jackson-mapper-asl</artifactId><version>1.9.11</version></dependency>
+        <dependency><groupId>org.codehaus.jackson</groupId><artifactId>jackson-xc</artifactId><version>1.9.11</version></dependency>
+        <!-- Database library imports -->
+        <dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId><version>5.1.22</version><scope>test</scope></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-jdbc</artifactId><version>${spring.version}</version></dependency>
+        <dependency><groupId>commons-dbcp</groupId><artifactId>commons-dbcp</artifactId><version>1.4</version></dependency>
+        <!-- Hibernate / JPA -->
+        <dependency><groupId>org.hibernate.javax.persistence</groupId><artifactId>hibernate-jpa-2.0-api</artifactId><version>1.0.1.Final</version><optional>false</optional></dependency>
+        <dependency><groupId>org.hibernate</groupId><artifactId>hibernate-entitymanager</artifactId><version>${hibernate.core}</version><scope>runtime</scope><optional>false</optional></dependency>
+        <dependency><groupId>org.hibernate</groupId><artifactId>hibernate-core</artifactId><version>${hibernate.core}</version></dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Maven MILESTONE Repository</name>
+            <url>http://repo.spring.io/libs-milestone</url>
+        </repository>
+    </repositories>
+
+
+
+
+</project>

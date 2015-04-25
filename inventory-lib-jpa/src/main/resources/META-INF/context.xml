@@ -1,0 +1,7 @@
+<Context cookies="true" allowLinking="true" >
+    <Resource name="jdbc/inventory" auth="Container"
+            type="javax.sql.DataSource" username="root" password="147troublE"
+            driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/inventory?profileSQL=false"
+            maxActive="12" maxIdle="4"/>
+
+</Context>
