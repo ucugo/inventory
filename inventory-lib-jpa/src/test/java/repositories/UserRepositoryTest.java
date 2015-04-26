@@ -2,6 +2,7 @@ package repositories;
 
 
 import domain.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,11 +28,33 @@ public class UserRepositoryTest  {
 
     @Test
     public void createUser() {
-        User user = new User();
-                userRepository.save(user);
+        User user = userRepository.save(dummyUser());
+        Assert.assertNotNull(user);
 
-        EntityManager em = entityManagerFactory.createEntityManager();
-        em.persist(user);
-        logger.info("Id value: {}",user.getId());
+//        EntityManager em = entityManagerFactory.createEntityManager();
+//        em.persist(user);
+    }
+
+    @Test
+    public void testGetUserByEmail(){
+        User user =userRepository.getUserByEailAddress(dummyUser().getEmailAddress());
+        Assert.assertNotNull(user);
+    }
+
+    @Test
+    public void testFindAllUsers(){
+        Iterable<User> users = userRepository.findAll();
+
+        Assert.assertTrue(users.iterator().hasNext());
+    }
+
+    private User dummyUser(){
+        User dummyUser = new User();
+
+        dummyUser.setFirstName("Barry");
+        dummyUser.setLastName("White");
+        dummyUser.setEmailAddress("ucugo@yahoo.co.uk");
+        dummyUser.setPassword("password");
+        return dummyUser;
     }
 }
