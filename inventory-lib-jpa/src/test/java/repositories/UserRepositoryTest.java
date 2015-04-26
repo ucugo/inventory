@@ -21,7 +21,7 @@ public class UserRepositoryTest  {
     private Logger logger = LoggerFactory.getLogger(UserRepositoryTest.class.getName());
 
    @Autowired UserRepository userRepository;
-//    @Autowired private EntityManagerFactory entityManagerFactory;
+    @Autowired private EntityManagerFactory entityManagerFactory;
 
 
     @Test
@@ -29,8 +29,8 @@ public class UserRepositoryTest  {
         User user = new User();
                 userRepository.save(user);
 
-//        EntityManager em = entityManagerFactory.createEntityManager();
-//        em.persist(user);
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.persist(user);
         logger.info("Id value: {}",user.getId());
     }
 }
