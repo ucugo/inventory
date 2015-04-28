@@ -1,0 +1,46 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] inventory-parent
+[INFO] inventory-lib
+[INFO] inventory-lib-jpa
+[INFO] inventory-admin
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building inventory-parent 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ inventory-parent ---
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building inventory-lib 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ inventory-lib ---
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building inventory-lib-jpa 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ inventory-lib-jpa ---
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building inventory-admin 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.1:tree (default-cli) @ inventory-admin ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] inventory-parent .................................. SUCCESS [3.081s]
+[INFO] inventory-lib ..................................... SUCCESS [1.703s]
+[INFO] inventory-lib-jpa ................................. SUCCESS [1.123s]
+[INFO] inventory-admin ................................... SUCCESS [1.093s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 8.496s
+[INFO] Finished at: Mon Apr 27 20:24:18 BST 2015
+[INFO] Final Memory: 12M/245M
+[INFO] ------------------------------------------------------------------------
