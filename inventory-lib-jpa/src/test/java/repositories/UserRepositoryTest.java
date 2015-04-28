@@ -37,8 +37,8 @@ public class UserRepositoryTest  {
 
     @Test
     public void testGetUserByEmail(){
-        User user =userRepository.getUserByEailAddress(dummyUser().getEmailAddress());
-        Assert.assertNotNull(user);
+        List<User> users =userRepository.findByEmailAddress(dummyUser().getEmailAddress());
+        Assert.assertNotNull(users);
     }
 
     @Test
@@ -46,6 +46,12 @@ public class UserRepositoryTest  {
         Iterable<User> users = userRepository.findAll();
 
         Assert.assertTrue(users.iterator().hasNext());
+    }
+
+    @Test
+    public void testGetUserByFirstName(){
+//        List<User> user = userRepository.findByFirstName(dummyUser().getFirstName());
+//        Assert.assertNotNull(user);
     }
 
     private User dummyUser(){

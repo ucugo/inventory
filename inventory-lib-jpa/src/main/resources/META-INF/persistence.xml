@@ -5,8 +5,11 @@
     <persistence-unit name="inventory" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
+            <property name="hibernate.ejb.naming_strategy" value="hibernate.HibernateNamingStrategy" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <!--  		<property name="hibernate.show_sql" value="true"/>-->
+            <!--  		<property name="hibernate.format_sql" value="true"/>-->
         </properties>
     </persistence-unit>
 </persistence>

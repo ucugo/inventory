@@ -1,23 +1,23 @@
 package repositories;
 
 import domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by Ugo on 18/04/2015.
  */
 
-public interface UserRepository extends CrudRepository<User,Long>{
+@Repository
+public interface UserRepository extends CrudRepository<User,Long> {
 
-    @Override
-    public User save(User user);
+    public List<User> findByEmailAddress(@Param("email")String email);
 
-    @Override
-    public User findOne(Long userId);
-
-    @Query("FROM user u where u.emailAddress=:email")
-    public User getUserByEailAddress(@Param("email")String email);
+    public List<User> findByFirstName(@Param("firstName")String firstName);
 
 }

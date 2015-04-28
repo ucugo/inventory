@@ -19,7 +19,7 @@ public class WebRequestAuditChangeContext implements AuditChangeContext {
         if (user == null)
             user = "unknown";
         change.setAdminUser(user);
-        String remoteAddr = request.getRequest().getRemoteAddr();
+        String remoteAddr = request.getRemoteUser();
         if (remoteAddr == null)
             remoteAddr = "unknown";
         change.setRemoteAddress(remoteAddr);
