@@ -31,8 +31,8 @@ public class UserRepositoryTest  {
         User user = userRepository.save(dummyUser());
         Assert.assertNotNull(user);
 
-//        EntityManager em = entityManagerFactory.createEntityManager();
-//        em.persist(user);
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.persist(user);
     }
 
     @Test
@@ -50,8 +50,8 @@ public class UserRepositoryTest  {
 
     @Test
     public void testGetUserByFirstName(){
-//        List<User> user = userRepository.findByFirstName(dummyUser().getFirstName());
-//        Assert.assertNotNull(user);
+        List<User> user = userRepository.findByFirstName(dummyUser().getFirstName());
+        Assert.assertNotNull(user);
     }
 
     private User dummyUser(){
