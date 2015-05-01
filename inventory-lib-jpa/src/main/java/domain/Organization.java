@@ -41,9 +41,6 @@ public class Organization extends AbstractModel{
     @OneToMany(mappedBy = "organization")
     private List<User> users = new ArrayList<User>();
 
-    @OneToMany(mappedBy = "organization")
-    private List<Item> items = new ArrayList<Item>();
-
 
     public String getOrganizationName() {
         return organizationName;

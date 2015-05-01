@@ -22,7 +22,7 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.26</version>
                 <configuration>
-                    <contextPath>"hello"</contextPath>
+                    <contextPath>"inventory-admin"</contextPath>
                     <reload>manual</reload>
                     <useTestClasspath>true</useTestClasspath>
                     <jettyEnvXml>../jetty-env.xml</jettyEnvXml>
@@ -116,6 +116,26 @@
             <!-- To allow us to run the app in Tomcat -->
 
             <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <contextFile>src/main/webapp/META-INF/context.xml</contextFile>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>commons-dbcp</groupId>
+                        <artifactId>commons-dbcp</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.13</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
@@ -141,10 +161,10 @@
 
     <dependencies>
         <dependency><groupId>inventory</groupId><artifactId>inventory-lib-jpa</artifactId><version>${project.version}</version></dependency>
-        <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-core</artifactId><version>3.2.4.RELEASE</version></dependency>
-        <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-web</artifactId><version>3.2.4.RELEASE</version></dependency>
-        <dependency><groupId>org.springframework</groupId><artifactId>spring-context</artifactId><version>${spring.version}</version></dependency>
-        <dependency><groupId>org.springframework</groupId><artifactId>spring-orm</artifactId><version>${spring.version}</version></dependency>
+        <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-core</artifactId><version>4.0.1.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-web</artifactId><version>4.0.1.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-context</artifactId><version>4.0.9.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-orm</artifactId><version>4.0.9.RELEASE</version></dependency>
         <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.7</version><scope>test</scope></dependency>
         <dependency><groupId>commons-lang</groupId><artifactId>commons-lang</artifactId><version>2.4</version></dependency>
 

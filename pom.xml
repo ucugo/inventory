@@ -21,11 +21,8 @@
         <maven.surefire.plugin.version>2.17</maven.surefire.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.data.version>1.5.2.RELEASE</spring.data.version>
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <spring.test.version>4.0.2.RELEASE</spring.test.version>
         <spring.security.version>3.2.0.RELEASE</spring.security.version>
         <spring.jms.version>3.0.5.RELEASE</spring.jms.version>
-        <spring.web>4.0.2.RELEASE</spring.web>
         <slf4j.version>1.6.1</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.org.apache.activemq>5.5.1</version.org.apache.activemq>
@@ -40,10 +37,18 @@
     <dependencies>
         <!-- Spring data-->
         <dependency><groupId>org.springframework.data</groupId><artifactId>spring-data-jpa</artifactId><version>1.8.0.RELEASE</version></dependency>
-        <dependency><groupId>org.springframework</groupId><artifactId>spring-core</artifactId><version>4.0.2.RELEASE</version></dependency>
         <dependency><groupId>org.springframework.data</groupId><artifactId>spring-data-mongodb</artifactId><version>1.7.0.RELEASE</version></dependency>
 
-        <dependency><groupId>org.springframework</groupId><artifactId>spring-webmvc</artifactId><version>${spring.web}</version></dependency>
+        <!-- Spring core-->
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-core</artifactId><version>4.0.9.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-expression</artifactId><version>4.0.9.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-beans</artifactId><version>4.0.9.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-aop</artifactId><version>4.0.9.RELEASE</version></dependency>
+
+        <!-- Spring web-->
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-webmvc</artifactId><version>4.0.6.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-web</artifactId><version>4.0.6.RELEASE</version></dependency>
+
         <dependency><groupId>javax.servlet</groupId><artifactId>servlet-api</artifactId><version>2.5</version><scope>provided</scope></dependency>
 
         <!-- Hibernate jars-->
@@ -63,7 +68,9 @@
         <!-- SLF4J-->
         <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-api</artifactId><version>1.7.12</version></dependency>
         <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-simple</artifactId><version>1.7.12</version></dependency>
-        <dependency><groupId>log4j</groupId><artifactId>log4j</artifactId><version>1.2.16</version></dependency>
+        <dependency><groupId>log4j</groupId><artifactId>log4j</artifactId><version>1.2.17</version>
+        </dependency>
+
     </dependencies>
 
 
