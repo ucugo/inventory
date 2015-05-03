@@ -1,5 +1,7 @@
 package domain;
 
+import util.AccountStatus;
+import util.AccountType;
 import util.UserRole;
 
 import javax.persistence.*;
@@ -14,6 +16,9 @@ public class InventoryUser extends AbstractModel {
 
     private static final long serialVersionUID = 1L;
     public static final String RequestScopeAttributeName="inventoryuser";
+    public static final String ADMIN_ROLE="ADMIN";
+    public static final String MANAGER_ROLE="MANAGER";
+    public static final String SALES_ROLE="SALES";
 
     private String firstName;
     private String lastName;
@@ -30,6 +35,11 @@ public class InventoryUser extends AbstractModel {
     private String townName;
     private String zipCode;
     private String countryName;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     @ManyToOne
     private Organization organization;
@@ -144,5 +154,33 @@ public class InventoryUser extends AbstractModel {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public boolean isAdmin(){
+       return this.accountType.equals(AccountType.ADMIN);
+    }
+
+    public boolean isManager(){
+        return this.accountType.equals(AccountType.MANAGER);
+    }
+
+    public boolean isSales(){
+        return this.accountType.equals(AccountType.SALES);
     }
 }

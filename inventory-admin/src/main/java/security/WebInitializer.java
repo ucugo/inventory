@@ -1,6 +1,6 @@
 package security;
 
-import config.ResourceConfig;
+import config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{ResourceConfig.class};
+        return new Class<?>[]{WebConfig.class};
     }
 
     @Override

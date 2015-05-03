@@ -5,5 +5,5 @@ package util;
  */
 public enum AccountStatus {
 
-    VERIFIED,SUSPENDED,TERMINATED,ACTIVE;
+    VERIFIED,SUSPENDED,TERMINATED,ACTIVE,APPROVED;
 }
