@@ -2,13 +2,12 @@ package controllers;
 
 import domain.InventoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.view.RedirectView;
 import repositories.UserRepository;
-import util.URLUtils;
+import util.UrlUtils;
 
 /**
  * Created by Ugo on 01/05/2015.
@@ -27,7 +26,7 @@ public class ControllerBase {
         String fUrl = "/" + url;
         if (query != null)
             fUrl += "?" + query;
-        fUrl = URLUtils.appendQueryParam(fUrl, "rand", String.valueOf(Math.random()));
+        fUrl = UrlUtils.appendQueryParam(fUrl, "rand", String.valueOf(Math.random()));
         return new RedirectView(fUrl, true, true, false);
     }
 
