@@ -10,9 +10,10 @@ import java.io.Serializable;
  */
 
 @Entity(name="user")
-public class User extends AbstractModel {
+public class InventoryUser extends AbstractModel {
 
     private static final long serialVersionUID = 1L;
+    public static final String RequestScopeAttributeName="inventoryuser";
 
     private String firstName;
     private String lastName;

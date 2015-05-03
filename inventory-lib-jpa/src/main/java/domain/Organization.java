@@ -39,7 +39,10 @@ public class Organization extends AbstractModel{
     private String countryName;
 
     @OneToMany(mappedBy = "organization")
-    private List<User> users = new ArrayList<User>();
+    private List<InventoryUser> inventoryUsers = new ArrayList<InventoryUser>();
+
+    @OneToMany(mappedBy = "organization")
+    private List<Item> items = new ArrayList<Item>();
 
 
     public String getOrganizationName() {
@@ -138,11 +141,11 @@ public class Organization extends AbstractModel{
         this.countryName = countryName;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<InventoryUser> getInventoryUsers() {
+        return inventoryUsers;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setInventoryUsers(List<InventoryUser> inventoryUsers) {
+        this.inventoryUsers = inventoryUsers;
     }
 }

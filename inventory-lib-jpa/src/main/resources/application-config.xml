@@ -17,7 +17,7 @@
               <!--<property name="targetDataSource" ref="jndiDataSource"/>-->
        <!--</bean>-->
        <context:annotation-config/>
-       <bean class="config.ApplicationConfig"/>
+       <bean class="config.ApplicationDataSourceConfig"/>
 
        <import resource="classpath:/common-config.xml"/>
 

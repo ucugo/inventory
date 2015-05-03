@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * Created by Ugo on 22/04/2015.
  */
 @Configuration
-public class ApplicationConfig {
+public class ApplicationDataSourceConfig {
 
     @Bean
     public DataSource dataSource(){

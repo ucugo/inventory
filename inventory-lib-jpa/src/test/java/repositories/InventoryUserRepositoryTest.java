@@ -1,7 +1,7 @@
 package repositories;
 
 
-import domain.User;
+import domain.InventoryUser;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,16 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:application-test-context.xml")
-public class UserRepositoryTest  {
+public class InventoryUserRepositoryTest {
 
-    private Logger logger = LoggerFactory.getLogger(UserRepositoryTest.class.getName());
+    private Logger logger = LoggerFactory.getLogger(InventoryUserRepositoryTest.class.getName());
 
    @Autowired UserRepository userRepository;
     @Autowired private EntityManagerFactory entityManagerFactory;
@@ -28,8 +27,8 @@ public class UserRepositoryTest  {
 
     @Test
     public void createUser() {
-        User user = userRepository.save(dummyUser());
-        Assert.assertNotNull(user);
+        InventoryUser inventoryUser = userRepository.save(dummyUser());
+        Assert.assertNotNull(inventoryUser);
 
 //        EntityManager em = entityManagerFactory.createEntityManager();
 //        em.persist(user);
@@ -37,30 +36,30 @@ public class UserRepositoryTest  {
 
     @Test
     public void testGetUserByEmail(){
-        List<User> users =userRepository.findByEmailAddress(dummyUser().getEmailAddress());
-        Assert.assertNotNull(users);
+        List<InventoryUser> inventoryUsers =userRepository.findByEmailAddress(dummyUser().getEmailAddress());
+        Assert.assertNotNull(inventoryUsers);
     }
 
     @Test
     public void testFindAllUsers(){
-        Iterable<User> users = userRepository.findAll();
+        Iterable<InventoryUser> users = userRepository.findAll();
 
         Assert.assertTrue(users.iterator().hasNext());
     }
 
     @Test
     public void testGetUserByFirstName(){
-        List<User> user = userRepository.findByFirstName(dummyUser().getFirstName());
-        Assert.assertNotNull(user);
+        List<InventoryUser> inventoryUser = userRepository.findByFirstName(dummyUser().getFirstName());
+        Assert.assertNotNull(inventoryUser);
     }
 
-    private User dummyUser(){
-        User dummyUser = new User();
+    private InventoryUser dummyUser(){
+        InventoryUser dummyInventoryUser = new InventoryUser();
 
-        dummyUser.setFirstName("Barry");
-        dummyUser.setLastName("White");
-        dummyUser.setEmailAddress("ucugo@yahoo.co.uk");
-        dummyUser.setPassword("password");
-        return dummyUser;
+        dummyInventoryUser.setFirstName("Barry");
+        dummyInventoryUser.setLastName("White");
+        dummyInventoryUser.setEmailAddress("ucugo@yahoo.co.uk");
+        dummyInventoryUser.setPassword("password");
+        return dummyInventoryUser;
     }
 }
