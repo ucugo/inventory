@@ -13,7 +13,7 @@
 // */
 //
 //@EnableWebMvc
-//
+//@Configuration
 //@ImportResource(value = {"classpath:applicationContext.xml"})
 //@Import(value = { SecurityConfig.class })
 //@ComponentScan(basePackages = { "controllers" })
