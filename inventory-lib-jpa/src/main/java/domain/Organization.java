@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * Created by Ugo on 26/04/2015.
  */
-@Entity(name="organization")
+@Entity
+@Table(name="organizations")
 public class Organization extends AbstractModel{
 
     private static final long serialVersionUID = 1L;

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import security.UserDetailsServiceImpl;
 import security.UserLookupInterceptor;
 import web.CurrentRequestInterceptor;
 
@@ -56,8 +57,23 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addWebRequestInterceptor(new CurrentRequestInterceptor());
-        registry.addWebRequestInterceptor((new UserLookupInterceptor()));
+        registry.addWebRequestInterceptor(currentRequestInterceptor());
+        registry.addWebRequestInterceptor(userLookupInterceptor());
+    }
+
+    @Bean
+    public CurrentRequestInterceptor currentRequestInterceptor(){
+        return new CurrentRequestInterceptor();
+    }
+
+    @Bean
+    public UserLookupInterceptor userLookupInterceptor(){
+        return new UserLookupInterceptor();
+    }
+
+    @Bean
+    public UserDetailsServiceImpl userDetailsServiceImpl(){
+        return new UserDetailsServiceImpl();
     }
 
 

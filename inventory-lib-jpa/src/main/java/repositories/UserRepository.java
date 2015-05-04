@@ -2,9 +2,11 @@ package repositories;
 
 import domain.Organization;
 import domain.InventoryUser;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +20,8 @@ public interface UserRepository extends CrudRepository<InventoryUser,Long> {
     public List<InventoryUser> findByEmailAddressAndPassword(@Param("emailAddress")String EmailAddress, @Param("password")String password);
     public List<InventoryUser> findByOrganization(Organization organization);
     public List<InventoryUser> findByEmailAddressLikeAndPasswordLike(@Param("emailAddress")String emailAddress,@Param("password")String password);
+    @Query("UPDATE InventoryUser i SET i.lastActivityAt = :now WHERE i.id = :userId")
+    public void updateLastActivityTime(@Param("userId")long userId, @Param("now")Date now);
 
 
 }

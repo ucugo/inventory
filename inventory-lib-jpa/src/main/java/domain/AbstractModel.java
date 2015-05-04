@@ -26,6 +26,10 @@ public class AbstractModel implements Serializable {
         return id;
     }
 
+    public boolean isNew() {
+        return id == null;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

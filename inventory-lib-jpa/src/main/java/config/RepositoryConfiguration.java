@@ -11,7 +11,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.AbstractPlatformTransactionManager;
-import web.CurrentRequestInterceptor;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -63,10 +62,5 @@ public class RepositoryConfiguration {
     public HibernateExceptionTranslator hibernateExceptionTranslator(){
         HibernateExceptionTranslator hibernateExceptionTranslator = new HibernateExceptionTranslator();
         return hibernateExceptionTranslator;
-    }
-
-    @Bean
-    public CurrentRequestInterceptor currentRequestInterceptor(){
-        return new CurrentRequestInterceptor();
     }
 }

@@ -6,12 +6,15 @@ import util.UserRole;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Ugo on 18/04/2015.
  */
 
-@Entity(name="user")
+@Entity
+@Table(name="inventory_users")
 public class InventoryUser extends AbstractModel {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +46,12 @@ public class InventoryUser extends AbstractModel {
 
     @ManyToOne
     private Organization organization;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastActivityAt = new Date();
+
+    @OneToMany(mappedBy = "inventoryUser")
+    private List<InventoryUserLoginHistory> inventoryUserLoginHistories;
 
     public String getFirstName() {
         return firstName;
@@ -182,5 +191,21 @@ public class InventoryUser extends AbstractModel {
 
     public boolean isSales(){
         return this.accountType.equals(AccountType.SALES);
+    }
+
+    public List<InventoryUserLoginHistory> getInventoryUserLoginHistories() {
+        return inventoryUserLoginHistories;
+    }
+
+    public void setInventoryUserLoginHistories(List<InventoryUserLoginHistory> inventoryUserLoginHistories) {
+        this.inventoryUserLoginHistories = inventoryUserLoginHistories;
+    }
+
+    public Date getLastActivityAt() {
+        return lastActivityAt;
+    }
+
+    public void setLastActivityAt(Date lastActivityAt) {
+        this.lastActivityAt = lastActivityAt;
     }
 }
