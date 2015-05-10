@@ -2,11 +2,13 @@ package config;
 
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.util.PathMatcher;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import security.UserDetailsServiceImpl;
@@ -20,7 +22,7 @@ import web.CurrentRequestInterceptor;
 @EnableWebMvc
 @Configuration
 @Import(value = {SecurityConfig.class})
-@ComponentScan(basePackages = {"config","controllers"})
+@ComponentScan(basePackages = {"config","controllers","security","service"})
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 
@@ -30,6 +32,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
                 .addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/")
                 .setCachePeriod(31556926);
+
     }
 
     @Bean
@@ -59,6 +62,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public void addInterceptors(InterceptorRegistry registry){
         registry.addWebRequestInterceptor(currentRequestInterceptor());
         registry.addWebRequestInterceptor(userLookupInterceptor());
+//        registry.addInterceptor(new WebRequestHandlerInterceptorAdapter()).addPathPatterns("")
     }
 
     @Bean
@@ -71,7 +75,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         return new UserLookupInterceptor();
     }
 
-    @Bean
+    @Bean(name = "userDetailsServiceImpl")
     public UserDetailsServiceImpl userDetailsServiceImpl(){
         return new UserDetailsServiceImpl();
     }

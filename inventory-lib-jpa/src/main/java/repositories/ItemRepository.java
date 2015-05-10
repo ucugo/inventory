@@ -15,5 +15,5 @@ public interface ItemRepository extends JpaRepository<Item, Serializable> {
     public List<Item> findByBarcodeNumber(String barccodeNumber);
     public List<Item> findByItemCategory(ItemCategory itemCategory);
     public List<Item> findByItemName(String itemName);
-//    public List<Item> findByItemCostGreaterThan(double cost);
+    public List<Item> findByItemCostGreaterThan(double cost);
 }

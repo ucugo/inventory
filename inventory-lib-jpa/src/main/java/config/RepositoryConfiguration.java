@@ -1,5 +1,7 @@
 package config;
 
+import hibernate.HibernateNamingStrategy;
+import org.hibernate.dialect.MySQLDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
@@ -9,6 +11,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.AbstractPlatformTransactionManager;
 
@@ -17,6 +20,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created by Ugo on 18/04/2015.
@@ -35,14 +39,16 @@ public class RepositoryConfiguration {
         final LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         bean.setJpaVendorAdapter(vendorAdapter);
         bean.setDataSource(dataSource);
-        bean.setPackagesToScan("repositories","domain");
+        bean.setPackagesToScan("repositories", "domain");
         bean.afterPropertiesSet();
+        bean.setJpaProperties(properties());
+        bean.setPersistenceXmlLocation("META-INF/persistence.xml");
         return bean.getObject();
     }
 
 
-    @Bean
-    public AbstractPlatformTransactionManager transactionManager() throws NamingException{
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager transactionManager() throws NamingException{
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory());
         transactionManager.setPersistenceUnitName("inventory");
@@ -53,8 +59,8 @@ public class RepositoryConfiguration {
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.getJpaPropertyMap().put("database","MYSQL");
-        adapter.getJpaPropertyMap().put("generateDdl","true");
-        adapter.getJpaPropertyMap().put("showSql","true");
+        adapter.getJpaPropertyMap().put("generateDdl", "true");
+        adapter.getJpaPropertyMap().put("showSql", "true");
         return adapter;
     }
 
@@ -62,5 +68,14 @@ public class RepositoryConfiguration {
     public HibernateExceptionTranslator hibernateExceptionTranslator(){
         HibernateExceptionTranslator hibernateExceptionTranslator = new HibernateExceptionTranslator();
         return hibernateExceptionTranslator;
+    }
+
+    public Properties properties(){
+        Properties properties = new Properties();
+        properties.put("hibernate.format_sql",true);
+        properties.put("hibernate.hbm2ddl.auto","create");
+        properties.put("hibernate.ejb.naming_strategy",new HibernateNamingStrategy());
+        properties.put("hibernate.dialect",new MySQLDialect());
+        return properties;
     }
 }

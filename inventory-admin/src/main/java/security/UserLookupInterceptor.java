@@ -37,6 +37,7 @@ public class UserLookupInterceptor implements WebRequestInterceptor {
     @Autowired private UserRepository users;
     @Autowired private UserDetailsServiceImpl userDetailsServiceImpl;
     @Autowired private PlatformTransactionManager transactionManager;
+
     @Autowired private InventoryUserLoginHistoryRepository inventoryUserLoginHistoryRepository;
 
     @Override
