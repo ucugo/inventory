@@ -1,7 +1,7 @@
 package domain;
 
 import util.AccountStatus;
-import util.MembershipType;
+import util.AccountType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class Organization extends AbstractModel{
     private String organizationUUId;
 
     @Enumerated(EnumType.STRING)
-    private MembershipType membershipType;
+    private AccountType accountType;
 
     @Enumerated(EnumType.STRING)
     private AccountStatus accountStatus;
@@ -33,14 +33,12 @@ public class Organization extends AbstractModel{
     private Date validityTo;
 
     private String telephoneNumber;
-    private String addressLine1;
-    private String addressLine2;
-    private String townName;
-    private String zipCode;
-    private String countryName;
 
     @OneToMany(mappedBy = "organization")
     private List<InventoryUser> inventoryUsers = new ArrayList<InventoryUser>();
+
+    @OneToMany(mappedBy = "organization")
+    private List<Address> addresses = new ArrayList<Address>();
 
     @OneToMany(mappedBy = "organization")
     private List<Item> items = new ArrayList<Item>();
@@ -62,13 +60,7 @@ public class Organization extends AbstractModel{
         this.organizationUUId = organizationUUId;
     }
 
-    public MembershipType getMembershipType() {
-        return membershipType;
-    }
 
-    public void setMembershipType(MembershipType membershipType) {
-        this.membershipType = membershipType;
-    }
 
     public AccountStatus getAccountStatus() {
         return accountStatus;
@@ -102,51 +94,36 @@ public class Organization extends AbstractModel{
         this.telephoneNumber = telephoneNumber;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getTownName() {
-        return townName;
-    }
-
-    public void setTownName(String townName) {
-        this.townName = townName;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
     public List<InventoryUser> getInventoryUsers() {
         return inventoryUsers;
     }
 
     public void setInventoryUsers(List<InventoryUser> inventoryUsers) {
         this.inventoryUsers = inventoryUsers;
+    }
+
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

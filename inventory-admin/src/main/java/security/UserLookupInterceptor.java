@@ -35,7 +35,6 @@ public class UserLookupInterceptor implements WebRequestInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(UserLookupInterceptor.class);
     
     @Autowired private UserRepository users;
-    @Autowired private UserDetailsServiceImpl userDetailsServiceImpl;
     @Autowired private PlatformTransactionManager transactionManager;
 
     @Autowired private InventoryUserLoginHistoryRepository inventoryUserLoginHistoryRepository;
@@ -64,12 +63,12 @@ public class UserLookupInterceptor implements WebRequestInterceptor {
         InventoryUser user = null;
         if (username != null) {
             user = this.users.findByEmailAddress(username).get(0);
-            if(user == null){
+            if(user == null || user.getOrganization() == null){
                 return new InventoryUser();
             }
             this.users.updateLastActivityTime(user.getId(), new Date());
 //            this.users.getEntityManager().detach(user);
-            if(user.getAccountStatus() != AccountStatus.APPROVED){
+            if(user.getOrganization().getAccountStatus() != AccountStatus.APPROVED){
                 throw new IOException("Your Account is not approved");
             }
                 InventoryUser userSession = (InventoryUser) request.getAttribute(InventoryUser.RequestScopeAttributeName, WebRequest.SCOPE_SESSION);

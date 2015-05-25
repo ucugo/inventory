@@ -2,12 +2,10 @@ package config;
 
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.MediaType;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -75,9 +73,21 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         return new UserLookupInterceptor();
     }
 
-    @Bean(name = "userDetailsServiceImpl")
-    public UserDetailsServiceImpl userDetailsServiceImpl(){
-        return new UserDetailsServiceImpl();
+//    @Bean(name = "userDetailsServiceImpl")
+//    public UserDetailsServiceImpl userDetailsServiceImpl(){
+//        return new UserDetailsServiceImpl();
+//    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.favorPathExtension(false).
+                favorParameter(true).
+                parameterName("mediaType").
+                ignoreAcceptHeader(true).
+                useJaf(false).
+                defaultContentType(MediaType.APPLICATION_JSON).
+                mediaType("xml", MediaType.APPLICATION_XML).
+                mediaType("json", MediaType.APPLICATION_JSON);
     }
 
 

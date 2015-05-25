@@ -1,11 +1,8 @@
 package domain;
 
-import util.AccountStatus;
-import util.AccountType;
 import util.UserRole;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -33,16 +30,6 @@ public class InventoryUser extends AbstractModel {
 
     private String telephoneNumber;
     private String mobilePhoneNumber;
-    private String addressLine1;
-    private String addressLine2;
-    private String townName;
-    private String zipCode;
-    private String countryName;
-    @Enumerated(EnumType.STRING)
-    private AccountStatus accountStatus;
-
-    @Enumerated(EnumType.STRING)
-    private AccountType accountType;
 
     @ManyToOne
     private Organization organization;
@@ -109,46 +96,6 @@ public class InventoryUser extends AbstractModel {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
-
-    public String getAddressLine2() {
-        return addressLine2;
-    }
-
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
-
-    public String getTownName() {
-        return townName;
-    }
-
-    public void setTownName(String townName) {
-        this.townName = townName;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
-
     public Organization getOrganization() {
         return organization;
     }
@@ -165,33 +112,11 @@ public class InventoryUser extends AbstractModel {
         this.emailAddress = emailAddress;
     }
 
-    public AccountStatus getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(AccountStatus accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
-    }
 
     public boolean isAdmin(){
-       return this.accountType.equals(AccountType.ADMIN);
+       return UserRole.ADMIN.equals(this.userRole);
     }
 
-    public boolean isManager(){
-        return this.accountType.equals(AccountType.MANAGER);
-    }
-
-    public boolean isSales(){
-        return this.accountType.equals(AccountType.SALES);
-    }
 
     public List<InventoryUserLoginHistory> getInventoryUserLoginHistories() {
         return inventoryUserLoginHistories;

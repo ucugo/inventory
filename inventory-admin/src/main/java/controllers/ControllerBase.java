@@ -34,7 +34,7 @@ public class ControllerBase {
         return redirect(url, null);
     }
 
-    protected InventoryUser getMeridianUser(WebRequest request){
+    protected InventoryUser getInventoryUser(WebRequest request){
         InventoryUser inventoryUser = (InventoryUser)request.getAttribute(InventoryUser.RequestScopeAttributeName, RequestAttributes.SCOPE_REQUEST);
 
         return inventoryUser;
