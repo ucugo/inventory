@@ -52,10 +52,11 @@ public class UserRepositoryTest{
         log.info("Users:{}", users);
     }
 
-    @Ignore
+    @Test
     public void testUpdateUserName(){
 //        User user = userRepository.updateUser(new User());
 
+        assertTrue("hello",true);
 //        log.info("User {}", user);
     }
 
