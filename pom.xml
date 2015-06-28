@@ -44,6 +44,8 @@
         <dependency><groupId>org.springframework</groupId><artifactId>spring-expression</artifactId><version>4.0.9.RELEASE</version></dependency>
         <dependency><groupId>org.springframework</groupId><artifactId>spring-beans</artifactId><version>4.0.9.RELEASE</version></dependency>
         <dependency><groupId>org.springframework</groupId><artifactId>spring-aop</artifactId><version>4.0.9.RELEASE</version></dependency>
+        <dependency><groupId>org.springframework</groupId><artifactId>spring-context-support</artifactId><version>4.0.9.RELEASE</version></dependency>
+
 
         <!-- Spring web-->
         <dependency><groupId>org.springframework</groupId><artifactId>spring-webmvc</artifactId><version>4.0.6.RELEASE</version></dependency>
@@ -75,6 +77,13 @@
         <dependency><groupId>commons-httpclient</groupId><artifactId>commons-httpclient</artifactId><version>3.1</version></dependency>
         <dependency><groupId>com.fasterxml.jackson.core</groupId><artifactId>jackson-core</artifactId><version>2.5.3</version></dependency>
         <dependency><groupId>org.codehaus.jackson</groupId><artifactId>jackson-mapper-asl</artifactId><version>1.9.13</version></dependency>
+
+        <!-- Thymeleaf-->
+        <dependency><groupId>org.thymeleaf</groupId><artifactId>thymeleaf-spring4</artifactId><version>2.1.2.RELEASE</version></dependency>
+        <!-- Javax mail-->
+        <dependency><groupId>javax.mail</groupId><artifactId>mail</artifactId><version>1.4.7</version></dependency>
+
+
 
 
     </dependencies>

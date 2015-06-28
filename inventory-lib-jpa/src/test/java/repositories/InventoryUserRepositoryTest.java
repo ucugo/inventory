@@ -25,7 +25,7 @@ public class InventoryUserRepositoryTest {
     @Autowired private EntityManagerFactory entityManagerFactory;
 
 
-//    @Test
+    @Test
     public void createUser() {
         InventoryUser inventoryUser = userRepository.save(dummyUser());
         Assert.assertNotNull(inventoryUser);

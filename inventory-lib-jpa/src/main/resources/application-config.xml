@@ -18,8 +18,10 @@
        <!--</bean>-->
        <context:annotation-config/>
        <bean class="config.ApplicationDataSourceConfig"/>
+       <bean class="config.JavaMailConfig"/>
 
        <import resource="classpath:/common-config.xml"/>
+
 
 
 </beans>
