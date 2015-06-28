@@ -2,6 +2,7 @@ package com.ugo.uchegbu.repository;
 
 import com.ugo.uchegbu.JpaConfig;
 import com.ugo.uchegbu.model.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
@@ -26,7 +27,7 @@ public class UserRepositoryTest{
     private static final Logger log = LoggerFactory.getLogger(UserRepositoryTest.class);
     @Autowired UserRepository userRepository;
 
-   @Test
+   @Ignore
     public void testEnterUser(){
 
        User user =new User();
@@ -44,14 +45,14 @@ public class UserRepositoryTest{
 
    }
 
-    @Test
+    @Ignore
     public void testFindAllUsers(){
         List<User> users = userRepository.findAll();
 
         log.info("Users:{}", users);
     }
 
-    @Test
+    @Ignore
     public void testUpdateUserName(){
 //        User user = userRepository.updateUser(new User());
 
